@@ -1,0 +1,90 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+
+# If using Django's collectstatic
+/static/
+
+# Environment variables
+.env
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Migrations (optional – include if auto-generated migrations shouldn't be tracked)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# macOS
+.DS_Store
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Testing
+.tox/
+.junit.xml
+
+# MyPy & Pyright
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Gunicorn
+gunicorn.pid
+
+# Docker
+*.pid
+*.seed
+*.tar
+*.log
+docker-compose.override.yml
+
+# pip tools
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Profiling
+prof/
+
+# Pytest
+.cache/
+.pytest_cache/
+
+# poetry
+poetry.lock
+
+# Secrets / credentials
+secrets.json

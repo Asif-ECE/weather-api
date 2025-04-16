@@ -1,0 +1,2 @@
+# test-requirements.txt
+-r requirements.txt

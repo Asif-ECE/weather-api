@@ -1,0 +1,4 @@
+# base-requirements.txt
+Django==5.2
+djangorestframework==3.16.0
+django-environ==0.12.0
