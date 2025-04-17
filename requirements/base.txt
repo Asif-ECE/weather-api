@@ -9,3 +9,4 @@ retry-requests==2.0.0
 aiohttp==3.11.16
 numpy==2.2.4
 pandas==2.2.3
+djangorestframework_simplejwt==5.5.0
