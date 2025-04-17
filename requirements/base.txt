@@ -3,3 +3,9 @@ Django==5.2
 djangorestframework==3.16.0
 django-environ==0.12.0
 requests==2.32.3
+openmeteo_requests==1.4.0
+requests-cache==1.2.1
+retry-requests==2.0.0
+aiohttp==3.11.16
+numpy==2.2.4
+pandas==2.2.3
