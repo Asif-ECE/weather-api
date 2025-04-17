@@ -8,7 +8,7 @@ from rest_framework.exceptions import ValidationError
 from utils.openmateo_client import get_top_districts_to_visit, compare_weather
 from utils.district_data_loader import get_districts
 from utils.message_generator import generate_weather_message
-from .serializers import DistrictAirWeatherSerializer
+from .serializers import DistrictAirWeatherSerializer, TravelRecommendationQuerySerializer
 
 
 class TopDistricts(APIView):
@@ -30,29 +30,14 @@ class TopDistricts(APIView):
 
 class TravelRecommendation(APIView):
     def get(self, request):
-        destination = request.query_params.get('destination', None)
-        lat = request.query_params.get('lat', None)
-        long = request.query_params.get('long', None)
-        travel_date_str = request.query_params.get('date', None)
+        serializer = TravelRecommendationQuerySerializer(data=request.query_params)
+        serializer.is_valid(raise_exception=True)
+        validated_data = serializer.validated_data
 
-        if not all([destination, lat, long, travel_date_str]):
-            return Response({
-                "error": True,
-                "message": "Missing required query parameters: destination, lat, long, and date."
-            }, status=status.HTTP_400_BAD_REQUEST)
-
-        try:
-            current_lat = float(lat)
-            current_long = float(long)
-            travel_date = datetime.strptime(travel_date_str, "%Y-%m-%d").date()
-        except ValueError as e:
-            raise ValidationError(f"Invalid parameter format: {e}")
-        
-        if travel_date < date.today():
-            return Response({
-                "error": True,
-                "message": "Travel date cannot be in the past. Choose a date between today and 15 days from now."
-            }, status=status.HTTP_400_BAD_REQUEST)
+        destination = validated_data["destination"]
+        lat = validated_data["lat"]
+        long = validated_data["long"]
+        travel_date_str = validated_data["date"]
         
         try:
             districts = get_districts()
@@ -71,14 +56,15 @@ class TravelRecommendation(APIView):
             }, status=status.HTTP_400_BAD_REQUEST)
 
         result = compare_weather(
-            source={"lat": current_lat, "long": current_long},
+            source={"lat": lat, "long": long},
             destination={"lat": district_info.get("lat"), "long": district_info.get("long")},
-            date=travel_date.strftime("%Y-%m-%d")
+            date=travel_date_str.strftime("%Y-%m-%d")
         )
 
         recommendation = "Recommended" if result["temp_diff"] < 0 and result["air_con_diff"] < 0 else "Not Recommended"
 
         return Response({
+            "success": True,
             "recommendation": recommendation,
             "message" : generate_weather_message(result)
         }, status=status.HTTP_200_OK)
