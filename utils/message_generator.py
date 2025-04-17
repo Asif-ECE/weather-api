@@ -12,12 +12,12 @@ def generate_weather_message(comparison) -> str:
         temp_msg = "no significant temperature difference"
     elif not warmer:
         if abs(temp_diff) >= TEMP_SIGNIFICANT_DIFF:
-            temp_msg = f"{abs(temp_diff)}°C cooler"
+            temp_msg = f"{round(abs(temp_diff), 2)}°C cooler"
         else:
             temp_msg = "a bit cooler"
     else:
         if abs(temp_diff) >= TEMP_SIGNIFICANT_DIFF:
-            temp_msg = f"{abs(temp_diff)}°C hotter"
+            temp_msg = f"{round(abs(temp_diff), 2)}°C hotter"
         else:
             temp_msg = "a bit warmer"
 
