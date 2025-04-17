@@ -88,3 +88,4 @@ poetry.lock
 
 # Secrets / credentials
 secrets.json
+data.json
