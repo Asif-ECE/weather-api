@@ -89,3 +89,6 @@ poetry.lock
 # Secrets / credentials
 secrets.json
 data.json
+
+# Cache
+.cache.sqlite
