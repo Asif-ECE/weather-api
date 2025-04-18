@@ -25,4 +25,15 @@ urlpatterns = [
 ]
 
 if settings.DEBUG and 'silk' in settings.INSTALLED_APPS:
-    urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
+    urlpatterns += [
+        path('silk/', include('silk.urls', namespace='silk'))
+    ]
+
+if settings.DEBUG and 'drf_spectacular' in settings.INSTALLED_APPS:
+    from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+
+    urlpatterns += [
+        path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+        path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+        path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    ]
