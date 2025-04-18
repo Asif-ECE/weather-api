@@ -1,2 +1,2 @@
 # prod-requirements.txt
--r requirements.txt
+-r base.txt

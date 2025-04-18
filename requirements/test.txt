@@ -1,2 +1,4 @@
 # test-requirements.txt
--r requirements.txt
+-r base.txt
+pytest==8.3.5
+pytest-django==4.11.1
