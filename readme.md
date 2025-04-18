@@ -19,6 +19,7 @@ A Django RESTful API that helps travelers choose the best districts in Banglades
 
 ## Project Structure
 
+<pre>
 WeatherAPI
 ├── Dockerfile
 ├── accounts
@@ -66,6 +67,7 @@ WeatherAPI
     ├── district_data_loader.py
     ├── message_generator.py
     └── openmateo_client.py
+</pre>
 
 ## Local Development Setup
 
