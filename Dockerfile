@@ -22,7 +22,7 @@ COPY . .
 RUN python manage.py collectstatic --noinput
 
 # Run Migrations
-RUN python manage.py makemigrations && python manage.py makemigrations
+RUN python manage.py makemigrations && python manage.py migrate
 
 # Default command
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
