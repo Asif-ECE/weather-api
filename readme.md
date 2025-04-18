@@ -79,10 +79,11 @@ cd weather-api
 ```
 
 ### 2. Create and configure .env
-> Note: Use the .env.example file as a reference for setting up your own environment. The main .env file is included in this project since it's intended for illustration purposes only and won't be deployed to production.
+> Note: Use the .env.example file as a reference for setting up your own environment.
 
 ```bash
 DJANGO_SETTINGS_MODULE='config.django.dev'          #   .dev | .prod | .test
+APP_ENV=dev
 DJANGO_DEBUG=True
 SECRET_KEY=secret-key
 ALLOWED_HOSTS=*
@@ -108,6 +109,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements/test.txt    # Options: test.txt, dev.txt, prod.txt
 
 # Run migrations
+python manage.py makemigrations
 python manage.py migrate
 
 # Start the development server
