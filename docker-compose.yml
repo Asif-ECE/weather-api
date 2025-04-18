@@ -1,6 +1,10 @@
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_ENV: ${APP_ENV}
     container_name: weatherapi_web
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
