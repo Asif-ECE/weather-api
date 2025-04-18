@@ -6,7 +6,10 @@ services:
       args:
         APP_ENV: ${APP_ENV}
     container_name: weatherapi_web
-    command: python manage.py runserver 0.0.0.0:8000
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
     ports:
