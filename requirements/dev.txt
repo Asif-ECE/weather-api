@@ -1,5 +1,6 @@
 # dev-requirements.txt
 -r requirements.txt
-black
-flake8
-pytest
+django-silk==5.3.2
+black==25.1.0
+flake8==7.2.0
+pytest==8.3.5
