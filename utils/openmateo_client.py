@@ -29,8 +29,8 @@ def _fetch_hourly_data(url, districts, hourly_param, forecast_days=None):
     _validate_districts(districts)
 
     params = {
-        "latitude": ",".join(d["lat"] for d in districts),
-        "longitude": ",".join(d["long"] for d in districts),
+        "latitude": [d["lat"] for d in districts],
+        "longitude": [d["long"] for d in districts],
         "hourly": hourly_param,
         "timezone": "Asia/Dhaka"
     }
@@ -135,15 +135,15 @@ def compare_weather(source, destination, date):
 
     weather_params = {
         **common_params,
-        "latitude": f"{source['lat']},{destination['lat']}",
-        "longitude": f"{source['long']},{destination['long']}",
+        "latitude": [source['lat'], destination['lat']],
+        "longitude": [source['long'], destination['long']],
         "hourly": "temperature_2m",
     }
 
     air_params = {
         **common_params,
-        "latitude": f"{source['lat']},{destination['lat']}",
-        "longitude": f"{source['long']},{destination['long']}",
+        "latitude": [source['lat'], destination['lat']],
+        "longitude": [source['long'], destination['long']],
         "hourly": "pm2_5",
     }
 
