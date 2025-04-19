@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 from rest_framework import serializers
 
 
@@ -30,6 +30,6 @@ class TravelRecommendationQuerySerializer(serializers.Serializer):
         today = date.today()
         if value < today:
             raise serializers.ValidationError("Travel date cannot be in the past.")
-        if value > today.replace(day=min(today.day + 15, 28)):
+        if value > (today + timedelta(days=15)):
             raise serializers.ValidationError("Travel date must be within 15 days from today.")
         return value
