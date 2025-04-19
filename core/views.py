@@ -34,7 +34,7 @@ class TopDistricts(APIView):
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
         top_10_districts = get_top_districts_to_visit(districts, result_range=10)
-        serializer = DistrictAirWeatherSerializer(top_10_districts.to_dict(orient="records"), many=True)
+        serializer = DistrictAirWeatherSerializer(top_10_districts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 

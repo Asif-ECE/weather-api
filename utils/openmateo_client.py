@@ -91,7 +91,7 @@ def get_batch_air_info(districts):
 def get_top_districts_to_visit(districts, result_range=10):
     weather_df = get_batch_weather_info(districts)
     air_df = get_batch_air_info(districts)
-
+    
     combined_df = pd.merge(
         weather_df,
         air_df,
@@ -116,7 +116,7 @@ def get_top_districts_to_visit(districts, result_range=10):
         ascending=[True, True]
     ).head(result_range)
 
-    return top_districts
+    return top_districts.to_dict(orient="records")
 
 
 def compare_weather(source, destination, date):
